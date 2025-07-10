@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hackivate</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Hackivate</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('authenticator')">Authenticator</a></li>
+                <li><a href="#" onclick="showSection('inventory')">Inventory</a></li>
+                <li><a href="#" onclick="showSection('contact')">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <main id="home" class="section">
+        <h1>Welcome to Hackivate</h1>
+        <p>Empowering secure healthcare supply chains</p>
+    </main>
+
+    <!-- Authenticator Section -->
+    <main id="authenticator" class="section hidden authenticator-section">
+        <h2>Drug Authentication</h2>
+        <p>Enter the drug name or batch ID below to verify its authenticity.</p>
+
+        <form id="authForm">
+            <input type="text" id="drugInput" placeholder="Enter Drug Name or Batch ID" required />
+            <button type="submit">Check</button>
+        </form>
+
+        <div id="resultBox" class="result-box hidden">
+            <h3>Verification Result</h3>
+            <ul>
+                <li><strong>Drug Name:</strong> <span id="resultName">–</span></li>
+                <li><strong>Batch ID:</strong> <span id="resultBatch">–</span></li>
+                <li><strong>Manufacturer:</strong> <span id="resultManufacturer">–</span></li>
+                <li><strong>Expiry Date:</strong> <span id="resultExpiry">–</span></li>
+                <li><strong>Remarks:</strong> <span id="resultRemarks">–</span></li>
+            </ul>
+            <div id="authStatus" class="auth-status">Authentic</div>
+        </div>
+
+        <div id="drugInfoBox" class="drug-info-box hidden">
+            <h3>About This Drug</h3>
+            <p><strong>Usage:</strong> Used to treat bacterial infections such as respiratory tract infections, skin
+                infections, and UTIs.</p>
+            <p><strong>Key Ingredients:</strong> Amoxicillin 500mg, Clavulanic Acid 125mg</p>
+            <p><strong>Description:</strong> This is a broad-spectrum antibiotic that stops bacterial growth and
+                enhances immunity.</p>
+            <p><strong>Precautions:</strong> Not recommended for those allergic to penicillin. Consult doctor for
+                liver/kidney conditions.</p>
+        </div>
+    </main>
+
+    <!-- Inventory Section -->
+    <main id="inventory" class="section hidden">
+        <div class="form-container" id="storeForm">
+            <h2>Enter Store Details</h2>
+            <input type="text" id="location" placeholder="Enter Location">
+            <input type="text" id="storeName" placeholder="Enter Store Name">
+            <button onclick="submitStoreDetails()">Submit</button>
+        </div>
+
+        <div class="inventory-section hidden" id="inventorySection">
+            <div class="header">
+                <h1>Medicine Inventory</h1>
+                <div class="actions">
+                    <button class="add"><i class="fas fa-plus"></i> Add Medicine</button>
+                    <button class="import"><i class="fas fa-file-import"></i> Import CSV</button>
+                    <button class="export"><i class="fas fa-file-export"></i> Export CSV</button>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search medicine...">
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Batch No</th>
+                        <th>Expiry</th>
+                        <th>Stock</th>
+                        <th>Price (₹)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Paracetamol</td>
+                        <td>Tablet</td>
+                        <td>B12345</td>
+                        <td>2025-12-31</td>
+                        <td>50</td>
+                        <td>1.50</td>
+                        <td class="status">In Stock</td>
+                        <td class="actions-btns">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                            <button class="restock-btn">Restock</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Amoxicillin</td>
+                        <td>Capsule</td>
+                        <td>A98765</td>
+                        <td>2024-09-15</td>
+                        <td>5</td>
+                        <td>3.00</td>
+                        <td class="status low-stock">Low Stock</td>
+                        <td class="actions-btns">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                            <button class="restock-btn">Restock</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cough Syrup</td>
+                        <td>Syrup</td>
+                        <td>C11223</td>
+                        <td>2023-06-10</td>
+                        <td>0</td>
+                        <td>2.00</td>
+                        <td class="status expired">Expired</td>
+                        <td class="actions-btns">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                            <button class="restock-btn">Restock</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Contact Us -->
+    <main id="contact" class="section hidden">
+        <h2>Contact Us Section (Coming Soon)</h2>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Hackivate. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
